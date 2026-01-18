@@ -235,7 +235,7 @@ End-to-End User Flow
    X-API-KEY: your_secret_api_key_here
 
 {
-"query": "What is the main conclusion of the document?"
+"query": "What is the main conclusion of the document"
 }
 
 first
