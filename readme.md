@@ -71,9 +71,9 @@ PHP 8.2+ -> create new .env file and use:
 
 API_KEY=sk_test_9fA3KxP2QmL7ZC8R4WbE1N6YHVDuT0J
 
-OPENAI_API_KEY=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
+OPENAI_API_KEY=
 
-OPENROUTER_API_KEY=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
+OPENROUTER_API_KEY=
 php artisan migrate --seed
 php artisan serve --port=8080
 npm install
