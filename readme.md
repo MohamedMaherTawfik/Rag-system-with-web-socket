@@ -73,6 +73,7 @@ API_KEY=your_laravel_api_key_here
 OPENAI_API_KEY=your_openai_api_key_here
 OPENROUTER_API_KEY=your_openrouter_api_key_here
 
+to prevent any error open the folder alone in vscode
 php artisan migrate --seed
 php artisan serve --port=8080
 npm install
@@ -93,6 +94,8 @@ API_KEY=your_laravel_api_key_here // must match laravel api key
 PORT=3001
 Node.js v18+
 
+start your docker engine first:
+then from project powershell
 docker run -p 6333:6333 qdrant/qdrant
 http://localhost:6333/dashboard#/collections for qdrant ui dashboard
 
