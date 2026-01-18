@@ -9,7 +9,6 @@
             <h2 class="text-2xl font-bold text-center text-gray-800 mb-6">إنشاء حساب جديد</h2>
 
             <form id="registerForm" class="space-y-5">
-                @csrf
                 <div>
                     <label for="name" class="block text-sm font-medium text-gray-700 mb-1">الاسم الكامل</label>
                     <input type="text" id="name" name="name"

@@ -9,7 +9,6 @@
             <h2 class="text-2xl font-bold text-center text-gray-800 mb-6">مرحباً بك</h2>
 
             <form id="loginForm" class="space-y-5">
-                @csrf
                 <div>
                     <label for="email" class="block text-sm font-medium text-gray-700 mb-1">البريد الإلكتروني</label>
                     <input type="email" id="email" name="email"

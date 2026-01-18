@@ -3,10 +3,11 @@
 use App\Http\Controllers\Api\V1\chat\ChatController;
 use App\Http\Controllers\Api\V1\pdf\PdfController;
 use App\Http\Controllers\Api\V1\Auth\AuthController;
+use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken;
 use Illuminate\Support\Facades\Route;
 
 
-Route::prefix('v1')->group(function () {
+Route::withoutMiddleware(VerifyCsrfToken::class)->prefix('v1')->group(function () {
 
     Route::prefix('users')->group(function () {
         Route::post('register', [AuthController::class, 'register'])->middleware(['throttle:3,1', 'guest']);
