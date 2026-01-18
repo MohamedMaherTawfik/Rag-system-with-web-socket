@@ -69,9 +69,9 @@ Prerequisites
 
 PHP 8.2+ -> create new .env file and use:
 
-API_KEY=sk-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-OPENAI_API_KEY=sk-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-OPENROUTER_API_KEY=sk-or-v1-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+API_KEY=your_laravel_api_key_here
+OPENAI_API_KEY=your_openai_api_key_here
+OPENROUTER_API_KEY=your_openrouter_api_key_here
 
 php artisan migrate --seed
 php artisan serve --port=8080
@@ -89,7 +89,7 @@ cd websocket-server/
 npm install
 node index.js
 .env file for node :
-API_KEY=sk-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx // must match laravel api key
+API_KEY=your_laravel_api_key_here // must match laravel api key
 PORT=3001
 Node.js v18+
 
