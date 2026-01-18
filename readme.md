@@ -69,11 +69,11 @@ Prerequisites
 
 PHP 8.2+ -> create new .env file and use:
 
-API_KEY=
+API_KEY=sk-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 
-OPENAI_API_KEY=
+OPENAI_API_KEY=sk-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 
-OPENROUTER_API_KEY=
+OPENROUTER_API_KEY=sk-or-v1-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 php artisan migrate --seed
 php artisan serve --port=8080
 npm install
