@@ -9,6 +9,7 @@
             <h2 class="text-2xl font-bold text-center text-gray-800 mb-6">مرحباً بك</h2>
 
             <form id="loginForm" class="space-y-5">
+                @csrf
                 <div>
                     <label for="email" class="block text-sm font-medium text-gray-700 mb-1">البريد الإلكتروني</label>
                     <input type="email" id="email" name="email"
@@ -42,6 +43,8 @@
 @section('scripts')
     <script>
         const API_KEY = "{{ env('API_KEY') }}";
+        const CSRF_TOKEN = document.querySelector('meta[name="csrf-token"]').content;
+
         document
             .getElementById("loginForm")
             .addEventListener("submit", async function(e) {
@@ -49,9 +52,9 @@
 
                 const email = document.getElementById("email").value;
                 const password = document.getElementById("password").value;
-
                 const loginMessage = document.getElementById("loginMessage");
-                loginMessage.textContent = "";
+
+                loginMessage.innerHTML = "";
                 loginMessage.classList.remove("text-red-500", "text-green-500");
 
                 try {
@@ -61,6 +64,7 @@
                             "Content-Type": "application/json",
                             Accept: "application/json",
                             "x-api-key": API_KEY,
+                            "X-CSRF-TOKEN": CSRF_TOKEN,
                         },
                         body: JSON.stringify({
                             email,
@@ -79,12 +83,23 @@
                             window.location.href = "{{ route('home') }}";
                         }, 500);
                     } else {
-                        loginMessage.textContent = json.message || "فشل تسجيل الدخول";
+                        let errorMessage = "";
+
+                        if (json.errors) {
+                            const errorList = Object.values(json.errors).flat();
+                            errorMessage = errorList.join("<br>");
+                        } else if (json.message) {
+                            errorMessage = json.message;
+                        } else {
+                            errorMessage = "فشل تسجيل الدخول. يرجى المحاولة لاحقًا.";
+                        }
+
+                        loginMessage.innerHTML = errorMessage;
                         loginMessage.classList.add("text-red-500");
                     }
                 } catch (err) {
                     console.error(err);
-                    loginMessage.textContent = "حدث خطأ في الاتصال";
+                    loginMessage.textContent = "حدث خطأ في الاتصال بالخادم";
                     loginMessage.classList.add("text-red-500");
                 }
             });

@@ -12,6 +12,7 @@
 
         <form id="chatForm" enctype="multipart/form-data"
             style="margin: 20px 0; display: flex; flex-direction: column; gap: 15px;">
+            @csrf
             <input type="file" name="file" accept=".pdf" required
                 style="padding: 12px; border: 1px solid #ccc; border-radius: 6px; font-size: 16px;">
             <input type="text" name="prompt" placeholder="Ask a question about the PDF..." required
@@ -32,5 +33,6 @@
 @endsection
 
 @section('scripts')
+    <script src="https://cdn.socket.io/4.7.5/socket.io.min.js"></script>
     @vite('resources/js/home/home.js')
 @endsection

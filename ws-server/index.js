@@ -9,7 +9,7 @@ const server = http.createServer(app);
 
 const io = new Server(server, {
   cors: {
-    origin: "*", // في production خليها domain معين
+    origin: "*",
   },
 });
 
@@ -39,10 +39,9 @@ io.use(async (socket, next) => {
         "x-api-key": process.env.API_KEY,
         Accept: "application/json",
       },
-      timeout: 3000,
+      timeout: 60000,
     });
 
-    // تحقق من وجود البيانات بالشكل المتوقع
     if (!res.data?.data?.user?.id) {
       console.error("Invalid profile response structure", {
         ip,
@@ -65,7 +64,6 @@ io.use(async (socket, next) => {
       message,
     });
 
-    // إرسال رسالة خطأ واضحة حسب الحالة
     if (status === 401) {
       return next(new Error("Unauthorized"));
     } else if (status === 403) {
@@ -82,7 +80,6 @@ io.use(async (socket, next) => {
  * =========================
  */
 io.on("connection", (socket) => {
-  // التأكد إن socket.user موجود (رغم أن middleware بيضمن كده)
   if (!socket.user || !socket.user.id) {
     console.error("Connected socket without valid user – closing");
     return socket.disconnect(true);
