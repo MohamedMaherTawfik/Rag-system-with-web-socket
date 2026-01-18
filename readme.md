@@ -69,7 +69,7 @@ Prerequisites
 
 PHP 8.2+ -> create new .env file and use:
 
-API_KEY=sk_test_9fA3KxP2QmL7ZC8R4WbE1N6YHVDuT0J
+API_KEY=
 
 OPENAI_API_KEY=
 
