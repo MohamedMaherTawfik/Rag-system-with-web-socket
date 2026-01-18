@@ -21,6 +21,5 @@ Route::prefix('v1')->group(function () {
     Route::middleware('auth:sanctum')->group(function () {
         Route::post('/pdf/upload', [PdfController::class, 'upload'])->middleware(['throttle:3,1']);
         Route::post('/chat', [ChatController::class, 'ask'])->middleware(['throttle:1,1']);
-        Route::post('/chat/context', [ChatController::class, 'getContext']);
     });
 });

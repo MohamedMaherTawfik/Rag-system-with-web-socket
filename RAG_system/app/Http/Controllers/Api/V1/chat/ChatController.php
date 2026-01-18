@@ -14,24 +14,7 @@ class ChatController extends Controller
      * Handle user question and return an answer using RAG approach.
      */
 
-    public function getContext(Request $request)
-    {
-        $request->validate(['question' => 'required|string']);
 
-        $user = $request->user();
-        $chunks = $this->getTopChunksFromQdrant($request->question, $user->id);
-
-        if (empty($chunks)) {
-            return response()->json(['context' => null], 200);
-        }
-
-        $contextParts = collect($chunks)->map(function ($chunk) {
-            return "[Source: {$chunk['file_path']} | Chunk #{$chunk['chunk_index']}]\n{$chunk['text']}";
-        })->all();
-
-        $contextText = implode("\n\n==========\n\n", $contextParts);
-        return response()->json(['context' => $contextText]);
-    }
     public function ask(Request $request)
     {
         $request->validate([
