@@ -1,0 +1,13 @@
+<?php
+
+use App\Http\Controllers\web\Auth\AuthController;
+use App\Http\Controllers\web\home\HomeController;
+use Illuminate\Support\Facades\Route;
+
+Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::get('/profile', [HomeController::class, 'profile'])->name('profile');
+
+Route::prefix('')->group(function () {
+    Route::get('/login', [AuthController::class, 'login'])->name('login');
+    Route::get('/register', [AuthController::class, 'register'])->name('register');
+});

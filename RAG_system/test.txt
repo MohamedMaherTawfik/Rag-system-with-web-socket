@@ -1,0 +1,2 @@
+{ "message": "تم رفع الملف وفهرسته بنجاح.", "document_id": 1 }
+BROADCAST_DRIVER=reverb
