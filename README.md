@@ -203,8 +203,8 @@ End-to-End User Flow
    X-API-KEY: your_secret_api_key_here
 
 {
-"email": "admin@admin.com",
-"password": "admin"
+"email": "user@user.com",
+"password": "user"
 }
 
 {
