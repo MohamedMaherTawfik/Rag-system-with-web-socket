@@ -15,12 +15,17 @@ Route::prefix('v1')->group(function () {
 
         Route::middleware(['auth:sanctum', 'throttle:5,1'])->group(function () {
             Route::get('profile', [AuthController::class, 'profile']);
+            Route::get('documents', [PdfController::class, 'documents']);
+
+            Route::get('/documents/download/{filename}', [PdfController::class, 'download'])
+                ->middleware('auth:sanctum')
+                ->name('documents.download');
             Route::patch('update-profile', [AuthController::class, 'updateProfile']);
         });
     });
 
     Route::middleware('auth:sanctum')->group(function () {
-        Route::post('/pdf/upload', [PdfController::class, 'upload'])->middleware(['throttle:3,1']);
+        Route::post('/pdf/upload', [PdfController::class, 'upload'])->middleware(['throttle:8,1']);
         Route::post('/chat', [ChatController::class, 'ask'])->middleware(['throttle:60,1']);
     });
 });

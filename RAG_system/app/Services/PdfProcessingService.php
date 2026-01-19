@@ -20,7 +20,7 @@ class PdfProcessingService
 
     public function process(UploadedFile $file, int $userId): array
     {
-        $filePath = $file->store('pdfs', 'local');
+        $filePath = $file->store('pdfs', 'public');
 
         DB::beginTransaction();
 
@@ -56,7 +56,7 @@ class PdfProcessingService
 
     private function extractText(string $filePath): string
     {
-        $fullPath = Storage::disk('local')->path($filePath);
+        $fullPath = Storage::disk('public')->path($filePath);
 
         $parser = new Parser();
         $pdf = $parser->parseFile($fullPath);

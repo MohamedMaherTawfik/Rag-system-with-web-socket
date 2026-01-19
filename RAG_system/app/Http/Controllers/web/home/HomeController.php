@@ -16,4 +16,9 @@ class HomeController extends Controller
     {
         return view('home.profile');
     }
+
+    public function documents()
+    {
+        return view('home.documents');
+    }
 }

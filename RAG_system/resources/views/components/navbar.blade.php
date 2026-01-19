@@ -7,6 +7,7 @@
         </ul>
     </nav>
 </header>
+
 <script>
     function updateAuthUI() {
         const authNav = document.getElementById('authNav');
@@ -16,19 +17,34 @@
 
         const token = localStorage.getItem('token');
         setTimeout(() => {
-            if (loadingEl.parentNode) {
-                loadingEl.remove();
-            }
+            if (loadingEl.parentNode) loadingEl.remove();
+
+            authNav.querySelectorAll('li[data-dynamic]').forEach(el => el.remove());
 
             if (token) {
+                // Documents
+                const documentsLi = document.createElement('li');
+                documentsLi.setAttribute('data-dynamic', '1');
+                const documentsLink = document.createElement('a');
+                documentsLink.href = '/documents';
+                documentsLink.textContent = 'Documents';
+                documentsLink.className = 'font-bold hover:text-blue-600 transition';
+                documentsLi.appendChild(documentsLink);
+                authNav.appendChild(documentsLi);
+
+
+                // Profile
                 const profileLi = document.createElement('li');
+                profileLi.setAttribute('data-dynamic', '1');
                 const profileLink = document.createElement('a');
                 profileLink.href = '/profile';
                 profileLink.textContent = 'Profile';
                 profileLink.className = 'font-bold hover:text-blue-600 transition';
                 profileLi.appendChild(profileLink);
 
+                // Logout
                 const logoutLi = document.createElement('li');
+                logoutLi.setAttribute('data-dynamic', '1');
                 const logoutLink = document.createElement('a');
                 logoutLink.href = '#';
                 logoutLink.textContent = 'Logout';
@@ -55,7 +71,9 @@
                 authNav.appendChild(profileLi);
                 authNav.appendChild(logoutLi);
             } else {
+                // Login
                 const loginLi = document.createElement('li');
+                loginLi.setAttribute('data-dynamic', '1');
                 const loginLink = document.createElement('a');
                 loginLink.href = '/login';
                 loginLink.textContent = 'Login';
@@ -65,5 +83,6 @@
             }
         }, 100);
     }
+
     document.addEventListener('DOMContentLoaded', updateAuthUI);
 </script>

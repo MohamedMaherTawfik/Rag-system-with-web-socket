@@ -9,6 +9,8 @@ Route::withoutMiddleware(VerifyCsrfToken::class)->group(function () {
 
     Route::get('/', [HomeController::class, 'index'])->name('home');
     Route::get('/profile', [HomeController::class, 'profile'])->name('profile');
+    Route::get('/documents', [HomeController::class, 'documents'])->name('documents');
+
 
     Route::prefix('')->group(function () {
         Route::get('/login', [AuthController::class, 'login'])->name('login');
